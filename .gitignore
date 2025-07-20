@@ -1,10 +1,43 @@
-# Ignore virtual environment
+# === Virtual Environment ===
 venv/
 
-# Ignore environment variables
+# === Environment Variables ===
 .env
 
-# Ignore Python cache
+# === Python Cache ===
 __pycache__/
 *.pyc
+*.pyo
 
+# === OS/System Files ===
+.DS_Store
+Thumbs.db
+
+# === Data Files (output files) ===
+*.csv
+*.tsv
+*.parquet
+*.json
+*.xlsx
+*.xls
+*.zip
+*.gz
+
+# === Jupyter Notebook Checkpoints ===
+.ipynb_checkpoints/
+
+# === Logs ===
+logs/
+*.log
+
+# === Compiled Notebooks ===
+*.nbconvert.ipynb
+
+# === IDE and Editor Folders ===
+.vscode/
+.idea/
+
+# === Airflow (if added later) ===
+airflow.db
+airflow.cfg
+unittest.cfg
