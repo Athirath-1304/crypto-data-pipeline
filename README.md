@@ -1,4 +1,8 @@
 # Crypto Data Pipeline 🚀
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Airflow](https://img.shields.io/badge/Airflow-Orchestrated-green)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Last Commit](https://img.shields.io/github/last-commit/Athirath-1304/crypto-data-pipeline)
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Airflow](https://img.shields.io/badge/Airflow-Orchestrated-green)
