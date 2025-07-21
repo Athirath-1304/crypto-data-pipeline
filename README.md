@@ -127,16 +127,24 @@ This project is licensed under the **MIT License**.
 
 ---
 
-## 🙌 Connect
+## 🙌 Connect with Me
 
-Built by **Athirath Bommerla**  
-⭐ Star this repo if you found it helpful!
+Built by **Athirath Bommerla** — aspiring data engineer 🚀  
+📫 **LinkedIn:** [linkedin.com/in/athirath-bommerla](https://www.linkedin.com/in/athirath-bommerla)  
+💻 **GitHub:** [github.com/Athirath-1304](https://github.com/Athirath-1304)  
+🐍 **Portfolio (if any):** [Add your portfolio link here]  
+📬 **Email (optional):** [Add your email or remove this line]
+
+> ⭐ Star this repo if you found it helpful — it helps others discover it too!
 
 ---
 
-> Let me know if you want to add:
-> - ✅ A **live demo badge**
-> - 📹 A **GIF of the Streamlit dashboard**
-> - ⚙️ **Auto-deploy instructions**
-> 
-> and I’ll help you plug that in too!
+## 🪄 Optional Add-ons
+
+Let me know if you want to add:
+
+- ✅ A **live demo badge**
+- 📹 A **GIF of the Streamlit dashboard**
+- ⚙️ **Auto-deploy instructions (to AWS / Streamlit Cloud)**
+
+I'd be happy to help you plug them in.
