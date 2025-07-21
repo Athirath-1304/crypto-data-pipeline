@@ -71,19 +71,16 @@ airflow standalone
 # Step 4: Check generated .parquet files
 ls crypto_data_pipeline/data/
 
-# 📊 Streamlit Dashboard
+## 🚀 Live Demo
 
-# Run the dashboard
-streamlit run app.py
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://athirath-1304-crypto-data-pipeline-app-qukao2.streamlit.app/)
 
-# Access dashboard at:
-# http://localhost:8501
-# Use the sidebar to:
-# - View Top Gainers
-# - View Top Losers
-# - Filter by coin
-# - View price trends and market caps
-```
+Try the deployed crypto dashboard with:
+
+- 📈 Real-time price trends
+- 💹 Top 10 gainers and losers (24h)
+- 🔍 Coin filtering
+- 📊 Interactive charts for market caps and prices
 
 ---
 
