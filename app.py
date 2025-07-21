@@ -5,18 +5,23 @@ import os
 st.set_page_config(layout="wide")
 st.title("📊 Crypto Data Viewer")
 
-# Load .parquet files
+# Load .parquet files from local folder (for dev/testing)
 data_dir = "crypto_data_pipeline/data/"
+
+if not os.path.exists(data_dir):
+    st.warning("📂 Data folder not found. This may happen on Streamlit Cloud.")
+    st.info("Please upload some .parquet files to `crypto_data_pipeline/data/` in your GitHub repo or test locally.")
+    st.stop()
+
 parquet_files = sorted([f for f in os.listdir(data_dir) if f.endswith(".parquet")])
 
 if not parquet_files:
-    st.error("❌ No data found. Please run the pipeline first.")
+    st.error("❌ No data found. Please run the pipeline first and commit some .parquet files.")
     st.stop()
 
 dfs = []
 for file in parquet_files:
     df = pd.read_parquet(os.path.join(data_dir, file))
-    # Inject timestamp from filename if not in dataframe
     if "timestamp" not in df.columns:
         timestamp_str = file.replace("crypto_data_", "").replace(".parquet", "")
         df["timestamp"] = pd.to_datetime(timestamp_str, format="%Y%m%d_%H%M%S", errors="coerce")
