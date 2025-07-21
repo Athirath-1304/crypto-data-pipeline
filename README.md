@@ -98,6 +98,12 @@ crypto-data-pipeline/
    - Start `crypto_pipeline_dag`
 
 ---
+## 🖥️ Airflow DAG UI
+
+> Example snapshot of the DAG running locally:
+
+![DAG Screenshot](assets/airflow_dag.png)
+
 
 ## 📌 Status
 
