@@ -18,10 +18,7 @@ with DAG(
     catchup=False,
 ) as dag:
 
-    run_pipeline = BashOperator(
-        task_id='run_crypto_pipeline',
-        bash_command='cd /Users/athirathbommerla/Documents/crypto-data-pipeline && airflow-venv/bin/python3 -m crypto_data_pipeline.main'
+    run_crypto_pipeline = BashOperator(
+        task_id="run_crypto_pipeline",
+        bash_command="source airflow-venv/bin/activate && PYTHONPATH=$(pwd) python crypto_data_pipeline/main.py"
     )
-
-    run_pipeline
-
