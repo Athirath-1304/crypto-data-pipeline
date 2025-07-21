@@ -8,29 +8,30 @@
 
 ---
 
-A production-ready data engineering pipeline that ingests live cryptocurrency data from the [CoinGecko API](https://www.coingecko.com/), validates its schema, saves it as Parquet files, and uploads it to an AWS S3 data lake. The entire workflow is orchestrated using Apache Airflow and modularized for maintainability.
+A production-ready data engineering pipeline that ingests live cryptocurrency data from the [CoinGecko API](https://www.coingecko.com/), validates its schema, saves it as Parquet files, and uploads it to an AWS S3 data lake. The entire workflow is orchestrated using Apache Airflow and modularized for maintainability. A Streamlit dashboard provides a visual view of the crypto data with filters and time-based trends.
 
 ---
 
 ## 📌 Key Features
 
-- ⛽ **Ingestion:** Live data from CoinGecko API (top 100 coins by market cap)
-- ✅ **Schema Validation:** Ensures consistent, typed data using PyArrow
-- 📀 **Storage:** Saves daily snapshots locally as `.parquet` files
-- ☁️ **Cloud Upload:** Auto-uploads to AWS S3 as a data lake-ready format
-- ⚙️ **Orchestration:** End-to-end flow automated via Apache Airflow
-- 🔀 **Modular Design:** Separate modules for extract, load, validate
-- 🔐 **Configurable:** Uses `.env` for environment-specific variables
+- ⛽ **Ingestion:** Live data from CoinGecko API (top 100 coins)  
+- ✅ **Schema Validation:** Ensures structured, consistent data  
+- 📀 **Storage:** Saves data locally as `.parquet` files  
+- ☁️ **Cloud Upload:** Automatically uploads to AWS S3  
+- ⚙️ **Orchestration:** Apache Airflow DAG handles full flow  
+- 🔀 **Modular Design:** Split into extract, validate, load stages  
+- 📊 **Streamlit Dashboard:** Visual insights with filters + trends  
+- 🔐 **Configurable:** Use `.env` for keys and bucket names  
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Python 3.10+**
-- **Apache Airflow** (Local setup)
-- `pandas`, `requests`, `boto3`, `pyarrow`
-- `python-dotenv` for config
-- **AWS S3** for cloud storage
+- **Python 3.10+**  
+- **Apache Airflow** for orchestration  
+- `pandas`, `requests`, `boto3`, `pyarrow`, `python-dotenv`  
+- **AWS S3** for cloud storage  
+- **Streamlit** for visualization  
 
 ---
 
@@ -42,123 +43,100 @@ This project follows a modular pattern and uses Airflow for daily orchestration:
 
 ---
 
+## 🔧 Local Setup & Demo
+
+```bash
+# 📦 Install dependencies
+pip install -r requirements.txt
+
+# 🔐 Set up environment variables
+# Create a .env file in the root directory with the following content:
+echo "AWS_ACCESS_KEY_ID=your_access_key" >> .env
+echo "AWS_SECRET_ACCESS_KEY=your_secret_key" >> .env
+echo "S3_BUCKET_NAME=athirath-crypto-data-lake" >> .env
+
+# 🧪 Quick Local Demo (No AWS Required)
+
+# Step 1: Disable S3 Upload
+# In crypto_data_pipeline/dags/crypto_pipeline_dag.py, comment out the upload_to_s3 line:
+# upload_to_s3(df, s3_bucket, filename)
+
+# Step 2: Start Airflow
+airflow standalone
+
+# Step 3: Trigger the DAG manually
+# Open Airflow UI at http://localhost:8080
+# Enable and trigger the DAG: crypto_pipeline_dag
+
+# Step 4: Check generated .parquet files
+ls crypto_data_pipeline/data/
+
+# 📊 Streamlit Dashboard
+
+# Run the dashboard
+streamlit run app.py
+
+# Access dashboard at:
+# http://localhost:8501
+# Use the sidebar to:
+# - View Top Gainers
+# - View Top Losers
+# - Filter by coin
+# - View price trends and market caps
+```
+
+---
+
 ## 📂 Folder Structure
 
 ```bash
 crypto-data-pipeline/
 ├── crypto_data_pipeline/
-│   ├── config/               # Configuration (future use)
 │   ├── dags/                 # Airflow DAGs
-│   ├── data/                 # Local .parquet data files
-│   ├── extract/              # Fetching data from API
-│   ├── load/                 # Uploading to AWS S3
-│   ├── schema/               # Schema validation logic
-│   ├── logs/                 # Pipeline logging (optional)
-│   ├── notebooks/            # Dev or EDA notebooks
-│   ├── __init__.py
-│   ├── main.py               # Entry point (optional if DAG handles all)
+│   ├── data/                 # Local Parquet data files
+│   ├── extract/              # API ingestion logic
+│   ├── load/                 # AWS S3 upload logic
+│   ├── schema/               # Schema validation
 │   └── ...
-├── dags/                    # DAG file if outside package
-├── requirements.txt         # Dependencies
-├── .env                     # API keys, AWS credentials
-├── .gitignore
+├── app.py                   # Streamlit dashboard
+├── requirements.txt
+├── .env
 ├── README.md
-└── setup_project.py         # Setup utility (optional)
+└── ...
 ```
-
----
-
-## 🚀 Getting Started
-
-### 🔧 Clone the repo
-
-```bash
-git clone https://github.com/Athirath-1304/crypto-data-pipeline.git
-cd crypto-data-pipeline
-```
-
-### 📦 Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 🔐 Set up environment variables
-
-Create a `.env` file:
-
-```dotenv
-AWS_ACCESS_KEY_ID=...
-AWS_SECRET_ACCESS_KEY=...
-S3_BUCKET_NAME=athirath-crypto-data-lake
-```
-
----
-
-## 🧪 Quick Local Demo (No AWS Required)
-
-Want to test the pipeline without AWS? You can run it locally and still get a `.parquet` file.
-
-### 1. Disable the S3 Upload
-
-In `crypto_data_pipeline/dags/crypto_pipeline_dag.py`, comment out the upload line:
-
-```python
-# upload_to_s3(df, s3_bucket, filename)
-```
-
-### 2. Run Airflow
-
-```bash
-airflow standalone
-```
-
-### 3. Trigger the DAG
-
-- Open: [http://localhost:8080](http://localhost:8080)
-- Find and trigger: `crypto_pipeline_dag`
-
-### 4. Check Output
-
-Your `.parquet` file will be saved at:
-
-```bash
-crypto_data_pipeline/data/
-```
-
-✅ That’s it! Your pipeline works locally even without AWS access.
-
----
-
-## 🖥️ Airflow DAG UI
-
-> Example snapshot of the DAG running locally:
-
-![DAG Screenshot](assets/airflow_dag.png)
 
 ---
 
 ## 📌 Status
 
-🟢 **Stable** — currently running locally with full functionality.
+🟢 **Stable** — tested with local DAGs and dashboard.
 
-Next Steps:
-- [ ] Add unit tests
-- [ ] Integrate AWS Athena for querying
-- [ ] Add CI/CD GitHub Actions
+---
+
+## ✅ Next Goals
+
+- [ ] Add unit tests  
+- [ ] Integrate AWS Athena querying  
+- [ ] Add GitHub Actions for CI/CD  
 
 ---
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the **MIT License**.
 
 ---
 
 ## 🙌 Connect
 
-Built by [Athirath Bommerla](https://www.linkedin.com/in/athirath-bommerla-7a1076237/)
+Built by **Athirath Bommerla**  
+⭐ Star this repo if you found it helpful!
 
 ---
 
-> ⭐ Star this repo if you found it helpful!
+> Let me know if you want to add:
+> - ✅ A **live demo badge**
+> - 📹 A **GIF of the Streamlit dashboard**
+> - ⚙️ **Auto-deploy instructions**
+> 
+> and I’ll help you plug that in too!
