@@ -6,11 +6,6 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Athirath-1304/crypto-data-pipeline)
 ![CI](https://github.com/Athirath-1304/crypto-data-pipeline/actions/workflows/python-ci.yml/badge.svg)
 
-![Python](https://img.shields.io/badge/Python-3.10-blue)
-![Airflow](https://img.shields.io/badge/Airflow-Orchestrated-green)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Last Commit](https://img.shields.io/github/last-commit/Athirath-1304/crypto-data-pipeline)
-
 ---
 
 A production-ready data engineering pipeline that ingests live cryptocurrency data from the [CoinGecko API](https://www.coingecko.com/), validates its schema, saves it as Parquet files, and uploads it to an AWS S3 data lake. The entire workflow is orchestrated using Apache Airflow and modularized for maintainability.
@@ -49,7 +44,7 @@ This project follows a modular pattern and uses Airflow for daily orchestration:
 
 ## 📂 Folder Structure
 
-\```bash
+```bash
 crypto-data-pipeline/
 ├── crypto_data_pipeline/
 │   ├── config/               # Configuration (future use)
@@ -69,47 +64,79 @@ crypto-data-pipeline/
 ├── .gitignore
 ├── README.md
 └── setup_project.py         # Setup utility (optional)
-\```
+```
 
 ---
 
 ## 🚀 Getting Started
 
-1. **Clone the repo:**
-   \```bash
-   git clone https://github.com/Athirath-1304/crypto-data-pipeline.git
-   cd crypto-data-pipeline
-   \```
+### 🔧 Clone the repo
 
-2. **Install dependencies:**
-   \```bash
-   pip install -r requirements.txt
-   \```
+```bash
+git clone https://github.com/Athirath-1304/crypto-data-pipeline.git
+cd crypto-data-pipeline
+```
 
-3. **Set up environment variables:**
-   Create a `.env` file:
-   \```dotenv
-   AWS_ACCESS_KEY_ID=...
-   AWS_SECRET_ACCESS_KEY=...
-   S3_BUCKET_NAME=athirath-crypto-data-lake
-   \```
+### 📦 Install dependencies
 
-4. **Run Airflow:**
-   \```bash
-   airflow standalone
-   \```
+```bash
+pip install -r requirements.txt
+```
 
-5. **Trigger the DAG:**
-   - Open `localhost:8080`
-   - Start `crypto_pipeline_dag`
+### 🔐 Set up environment variables
+
+Create a `.env` file:
+
+```dotenv
+AWS_ACCESS_KEY_ID=...
+AWS_SECRET_ACCESS_KEY=...
+S3_BUCKET_NAME=athirath-crypto-data-lake
+```
 
 ---
+
+## 🧪 Quick Local Demo (No AWS Required)
+
+Want to test the pipeline without AWS? You can run it locally and still get a `.parquet` file.
+
+### 1. Disable the S3 Upload
+
+In `crypto_data_pipeline/dags/crypto_pipeline_dag.py`, comment out the upload line:
+
+```python
+# upload_to_s3(df, s3_bucket, filename)
+```
+
+### 2. Run Airflow
+
+```bash
+airflow standalone
+```
+
+### 3. Trigger the DAG
+
+- Open: [http://localhost:8080](http://localhost:8080)
+- Find and trigger: `crypto_pipeline_dag`
+
+### 4. Check Output
+
+Your `.parquet` file will be saved at:
+
+```bash
+crypto_data_pipeline/data/
+```
+
+✅ That’s it! Your pipeline works locally even without AWS access.
+
+---
+
 ## 🖥️ Airflow DAG UI
 
 > Example snapshot of the DAG running locally:
 
 ![DAG Screenshot](assets/airflow_dag.png)
 
+---
 
 ## 📌 Status
 
