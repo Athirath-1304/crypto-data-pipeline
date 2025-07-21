@@ -6,6 +6,8 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Athirath-1304/crypto-data-pipeline)
 ![CI](https://github.com/Athirath-1304/crypto-data-pipeline/actions/workflows/python-ci.yml/badge.svg)
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://athirath-1304-crypto-data-pipeline-app-qukao2.streamlit.app/)
+
 ---
 
 A production-ready data engineering pipeline that ingests live cryptocurrency data from the [CoinGecko API](https://www.coingecko.com/), validates its schema, saves it as Parquet files, and uploads it to an AWS S3 data lake. The entire workflow is orchestrated using Apache Airflow and modularized for maintainability. A Streamlit dashboard provides a visual view of the crypto data with filters and time-based trends.
@@ -70,6 +72,9 @@ airflow standalone
 
 # Step 4: Check generated .parquet files
 ls crypto_data_pipeline/data/
+```
+
+---
 
 ## 🚀 Live Demo
 
@@ -77,21 +82,11 @@ ls crypto_data_pipeline/data/
 
 Try the deployed crypto dashboard with:
 
-- 📈 Real-time price trends
-- 💹 Top 10 gainers and losers (24h)
-- 🔍 Coin filtering
-- 📊 Interactive charts for market caps and prices
+- 📈 Real-time price trends  
+- 💹 Top 10 gainers and losers (24h)  
+- 🔍 Coin filtering  
+- 📊 Interactive charts for market caps and prices  
 
----
-
-## 🚀 Live Demo
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://athirath-1304-crypto-data-pipeline.streamlit.app)
-
-Try the deployed crypto dashboard with:
-- 📈 Price trends
-- 🔍 Coin filtering
-- 💹 Top gainers/losers
 ---
 
 ## 📂 Folder Structure
@@ -141,5 +136,3 @@ Built by **Athirath Bommerla** — aspiring data engineer 🚀
 💻 **GitHub:** [github.com/Athirath-1304](https://github.com/Athirath-1304)  
 
 > ⭐ Star this repo if you found it helpful — it helps others discover it too!
-
----
