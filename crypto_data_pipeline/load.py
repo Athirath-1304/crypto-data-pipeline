@@ -6,6 +6,7 @@ used as part of the crypto data pipeline.
 import pandas as pd
 import pyarrow.parquet as pq
 
+
 def load_parquet_file(filepath: str) -> pd.DataFrame:
     """
     Load a Parquet file and return a pandas DataFrame.

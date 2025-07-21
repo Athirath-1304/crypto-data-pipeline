@@ -1,16 +1,21 @@
-import requests
-import pandas as pd
-import os
 import logging
+import os
 from datetime import datetime, timezone
+
+import boto3
+import pandas as pd
+import pandera.pandas as pda  # ✅ avoid naming conflict
 import pyarrow as pa
 import pyarrow.parquet as pq
-import boto3
-import pandera.pandas as pda  # ✅ avoid naming conflict
+import requests
+
 from crypto_data_pipeline.schema.crypto_schema import crypto_schema
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s"
+)
+
 
 def fetch_crypto_data():
     logging.info("📥 Fetching crypto data from CoinGecko...")
@@ -20,17 +25,27 @@ def fetch_crypto_data():
         "order": "market_cap_desc",
         "per_page": 10,
         "page": 1,
-        "sparkline": False
+        "sparkline": False,
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
     data = response.json()
 
-    df = pd.DataFrame(data)[[
-        "id", "symbol", "name", "current_price", "market_cap",
-        "total_volume", "high_24h", "low_24h", "price_change_24h",
-        "price_change_percentage_24h", "last_updated"
-    ]]
+    df = pd.DataFrame(data)[
+        [
+            "id",
+            "symbol",
+            "name",
+            "current_price",
+            "market_cap",
+            "total_volume",
+            "high_24h",
+            "low_24h",
+            "price_change_24h",
+            "price_change_percentage_24h",
+            "last_updated",
+        ]
+    ]
 
     # ✅ Schema validation using Pandera
     try:
@@ -59,9 +74,10 @@ def fetch_crypto_data():
 
     # ✅ Upload _SUCCESS file
     success_key = f"crypto-data/_SUCCESS"
-    logging.info(f"Uploading empty _SUCCESS file to s3://{bucket_name}/{success_key}...")
+    logging.info(
+        f"Uploading empty _SUCCESS file to s3://{bucket_name}/{success_key}..."
+    )
     s3.put_object(Bucket=bucket_name, Key=success_key, Body="")
     logging.info("✅ _SUCCESS file uploaded.")
 
     return filename
-

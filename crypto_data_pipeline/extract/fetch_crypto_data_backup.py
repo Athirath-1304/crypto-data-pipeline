@@ -1,15 +1,16 @@
-import requests
-import pandas as pd
+import logging
 import os
 from datetime import datetime
-import logging
+
+import pandas as pd
+import requests
 
 # Setup logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+    level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s"
 )
+
 
 def fetch_crypto_data():
     url = "https://api.coingecko.com/api/v3/coins/markets"
@@ -18,7 +19,7 @@ def fetch_crypto_data():
         "order": "market_cap_desc",
         "per_page": 100,
         "page": 1,
-        "sparkline": False
+        "sparkline": False,
     }
 
     logger.info("Requesting data from CoinGecko API...")

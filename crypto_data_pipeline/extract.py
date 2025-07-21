@@ -6,19 +6,23 @@ and in AWS S3.
 This module is intended to be scheduled and run as part of an Airflow DAG.
 """
 
-import os
 import logging
-import requests
-import pandas as pd
+import os
 from datetime import datetime
+
+import boto3
+import pandas as pd
+import pandera as pa
 import pyarrow as pa
 import pyarrow.parquet as pq
-import boto3
-import pandera as pa
+import requests
 from schema import crypto_schema
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s"
+)
+
 
 def fetch_crypto_data():
     """
@@ -40,18 +44,28 @@ def fetch_crypto_data():
         "order": "market_cap_desc",
         "per_page": 10,
         "page": 1,
-        "sparkline": False
+        "sparkline": False,
     }
 
     response = requests.get(url, params=params)
     response.raise_for_status()
     data = response.json()
 
-    df = pd.DataFrame(data)[[
-        "id", "symbol", "name", "current_price", "market_cap",
-        "total_volume", "high_24h", "low_24h", "price_change_24h",
-        "price_change_percentage_24h", "last_updated"
-    ]]
+    df = pd.DataFrame(data)[
+        [
+            "id",
+            "symbol",
+            "name",
+            "current_price",
+            "market_cap",
+            "total_volume",
+            "high_24h",
+            "low_24h",
+            "price_change_24h",
+            "price_change_percentage_24h",
+            "last_updated",
+        ]
+    ]
 
     # Step 2: Validate schema
     try:

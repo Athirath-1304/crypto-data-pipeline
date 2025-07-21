@@ -1,5 +1,7 @@
 import os
+
 from crypto_data_pipeline.extract.fetch_crypto_data import fetch_crypto_data
+
 
 def test_fetch_crypto_data_runs():
     """
@@ -9,4 +11,3 @@ def test_fetch_crypto_data_runs():
     output_path = fetch_crypto_data()
     assert output_path.endswith(".parquet")
     assert os.path.exists(output_path)
-

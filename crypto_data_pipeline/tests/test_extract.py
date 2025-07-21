@@ -1,6 +1,10 @@
-import pytest
 import os
-from crypto_data_pipeline import extract  # ✅ This is correct based on your structure
+
+import pytest
+
+from crypto_data_pipeline import \
+    extract  # ✅ This is correct based on your structure
+
 
 def test_fetch_crypto_data_runs():
     """

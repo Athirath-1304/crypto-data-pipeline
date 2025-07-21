@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 
 # Set the root directory for consistent paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -17,15 +17,19 @@ if __name__ == "__main__":
 
     print("📂 Getting latest .parquet file...")
     latest_file = max(
-        [os.path.join(DATA_DIR, f) for f in os.listdir(DATA_DIR) if f.endswith(".parquet")],
-        key=os.path.getctime
+        [
+            os.path.join(DATA_DIR, f)
+            for f in os.listdir(DATA_DIR)
+            if f.endswith(".parquet")
+        ],
+        key=os.path.getctime,
     )
 
     print("☁️ Uploading to S3...")
     upload_to_s3(
         file_path=latest_file,
         bucket_name="athirath-crypto-data-lake",
-        s3_key=f"crypto-data/{os.path.basename(latest_file)}"
+        s3_key=f"crypto-data/{os.path.basename(latest_file)}",
     )
 
     print("✅ Pipeline complete.")
