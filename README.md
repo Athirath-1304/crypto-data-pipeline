@@ -130,7 +130,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🙌 Connect
 
-Built by [Athirath Bommerla](https://www.linkedin.com/in/athirathbommerla)
+Built by [Athirath Bommerla](https://www.linkedin.com/in/athirath-bommerla-7a1076237/)
 
 ---
 
