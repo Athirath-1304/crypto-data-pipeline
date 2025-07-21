@@ -1,43 +1,42 @@
-# === Virtual Environment ===
+# === Python virtual environments ===
 venv/
+airflow-venv/
 
-# === Environment Variables ===
-.env
-
-# === Python Cache ===
+# === Python bytecode and cache ===
 __pycache__/
 *.pyc
 *.pyo
 
-# === OS/System Files ===
-.DS_Store
-Thumbs.db
-
-# === Data Files (output files) ===
-*.csv
-*.tsv
-*.parquet
-*.json
-*.xlsx
-*.xls
-*.zip
-*.gz
-
-# === Jupyter Notebook Checkpoints ===
-.ipynb_checkpoints/
+# === Environment variables ===
+.env
 
 # === Logs ===
 logs/
 *.log
 
-# === Compiled Notebooks ===
+# === Local data files ===
+*.csv
+*.tsv
+*.json
+*.parquet
+*.xlsx
+*.xls
+*.zip
+*.gz
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints/
 *.nbconvert.ipynb
 
-# === IDE and Editor Folders ===
+# === IDE/editor settings ===
 .vscode/
 .idea/
 
-# === Airflow (if added later) ===
+# === System/OS files ===
+.DS_Store
+Thumbs.db
+
+# === Airflow config files ===
 airflow.db
 airflow.cfg
 unittest.cfg
