@@ -87,6 +87,16 @@ streamlit run app.py
 
 ---
 
+## 🚀 Live Demo
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://athirath-1304-crypto-data-pipeline.streamlit.app)
+
+Try the deployed crypto dashboard with:
+- 📈 Price trends
+- 🔍 Coin filtering
+- 💹 Top gainers/losers
+---
+
 ## 📂 Folder Structure
 
 ```bash
